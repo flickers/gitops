@@ -8,3 +8,9 @@ metadata:
 spec:
   # Project description
   description: Cluster Core Services
+  destinations:
+  - name: '*'
+    namespace: '*'
+    server: 'https://kubernetes.default.svc'
+  sourceRepos:
+  - https://github.com/flickers/gitops.git
