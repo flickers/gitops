@@ -8,7 +8,7 @@ spec:
         repoURL: https://github.com/flickers/gitops.git
         revision: HEAD
         files:
-          - path: "cluster-critical/**/config.json"
+          - path: "cluster-core/**/config.json"
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
