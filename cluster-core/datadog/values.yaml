@@ -1,0 +1,68 @@
+# Datadog Agent with Logs, APM, Processes, and System Probe enabled
+# Because Datadogs chart is a subchart to Icelandair's chart we need to have datadog.datadog as shown below.
+datadog:
+  targetSystem: "linux"
+  datadog:
+    # apiKey: <DATADOG_API_KEY>
+    # appKey: <DATADOG_APP_KEY>
+    # If not using secrets, then use apiKey and appKey instead
+    apiKeyExistingSecret: dd-secret
+    # appKeyExistingSecret: <DATADOG_APP_KEY_SECRET>
+    clusterName: flickers-home-gitops
+    tags:
+      - env:dev
+    # datadog.kubelet.tlsVerify should be `false` on kind and minikube
+    # to establish communication with the kubelet
+    # kubelet:
+      # tlsVerify: "false"
+    logs:
+      enabled: true
+      containerCollectAll: true #collect logs from all containers?
+    apm:
+      socketEnabled: true #To enable APM set this to true
+      portEnabled: false
+      enabled: true #To enable APM set this to true
+    
+    # enabling HostPort for custom metrics to work
+    dogstatsd:
+      useSocketVolume: false
+      useHostPort: true
+    
+    # exclude containers space delimited but set to folded yaml style for readability
+    containerExcludeLogs: >- 
+      kube_namespace:kube.* 
+
+  agents:
+    customAgentConfig:
+      # Autodiscovery for Kubernetes
+      listeners:
+        - name: kubelet
+        # - name: docker
+      config_providers:
+        - name: kubelet
+          polling: true
+        # needed to support legacy docker label config templates
+        - name: docker
+          polling: true
+
+    # agents.tolerations -- Allow the DaemonSet to schedule on tainted nodes (requires Kubernetes >= 1.6)
+    # this is set to install the datadog Agent on the master nodes
+    tolerations: 
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+
+    containers:
+      traceAgent:
+        # agents.containers.traceAgent.env -- Additional environment variables for the trace-agent container
+        env:
+          - name: DD_APM_IGNORE_RESOURCES
+            value: '"(GET|POST) /nginx_status/", "(GET|POST) /_health/ready", "(GET|POST) /_health/alive", "(GET|POST) /healthz", "(GET|POST) /health", "(GET|POST) /health/liveness", "(GET|POST) /health/ready", "(GET|POST) /ready", "GET /contracts/downstream/contract.yml"'
+  
+  clusterAgent:
+    tokenExistingSecret : dd-secret-token
+    confd:
+      http_check.yaml: |-
+        cluster_check: true
+        init_config:
+          timeout: 5
+
