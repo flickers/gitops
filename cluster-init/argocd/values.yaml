@@ -397,7 +397,7 @@ argo-cd:
       # -- Dex image repository
       repository: ghcr.io/dexidp/dex
       # -- Dex image tag
-      tag: v2.30.2
+      tag: v2.31.1
       # -- Dex imagePullPolicy
       imagePullPolicy: IfNotPresent
     initImage:
