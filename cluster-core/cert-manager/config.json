@@ -1,20 +1,20 @@
 [
     {
-      "name": "cert-manager",
+      "name": "cert-manager-dev",
       "cluster": "dev",
       "namespace": "utility",
       "folderPath": "cluster-core/cert-manager",
       "valueFile": "values-dev.yaml"
     },
     {
-      "name": "cert-manager",
+      "name": "cert-manager-stage",
       "cluster": "stage",
       "namespace": "utility",
       "folderPath": "cluster-core/cert-manager",
       "valueFile": "values-stage.yaml"
     },
     {
-      "name": "cert-manager",
+      "name": "cert-manager-prod",
       "cluster": "prod",
       "namespace": "utility",
       "folderPath": "cluster-core/cert-manager",
