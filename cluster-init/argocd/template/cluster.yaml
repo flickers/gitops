@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  config: '{"tlsClientConfig":{"insecure":false}}'
+  name: dev
+  server: https://kubernetes.default.svc
+kind: Secret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+  name: cluster-dev
+  namespace: argocd
+type: Opaque
