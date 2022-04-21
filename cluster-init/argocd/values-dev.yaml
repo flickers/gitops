@@ -28,8 +28,6 @@ argo-cd:
         orphanedResources: {}
         roles: []
       namespaceResourceWhitelist: []
-      orphanedResources: {}
-      roles: []
       syncWindows:
       - kind: allow
         schedule: '* * * * *'
@@ -57,8 +55,6 @@ argo-cd:
         kind: '*'
       namespaceResourceBlacklist: []
       namespaceResourceWhitelist: []
-      orphanedResources: {}
-      roles: []
       syncWindows:
       - kind: allow
         schedule: '* * * * *'
