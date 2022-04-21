@@ -8,9 +8,25 @@ metadata:
 spec:
   # Project description
   description: Cluster Apps
+  
   destinations:
   - name: '*'
     namespace: '*'
     server: 'https://kubernetes.default.svc'
+  
+  # Deny all cluster-scoped resources from being created, except for Namespace
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+  - group: ''
+    kind: ResourceQuota
+  - group: ''
+    kind: LimitRange
+  - group: ''
+    kind: NetworkPolicy
+  
   sourceRepos:
   - https://github.com/flickers/gitops.git

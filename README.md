@@ -1,1 +1,1 @@
-# Home cluster using GitOps, Github Actions, Helm and ArgoCD
+# Home cluster using GitOps, GitHub Actions, Helm and ArgoCD
