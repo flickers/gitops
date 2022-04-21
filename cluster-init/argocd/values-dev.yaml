@@ -1,0 +1,84 @@
+argo-cd:
+  server:
+    additionalProjects:
+    # ####### Cluster Apps ############
+    - name: cluster-apps
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+      description: Cluster Apps
+      sourceRepos:
+      - 'https://github.com/flickers/gitops.git'
+      destinations:
+      - name: '*'
+        namespace: '*'
+        server: 'https://kubernetes.default.svc'
+      clusterResourceWhitelist:
+      - group: ''
+        kind: Namespace
+      namespaceResourceBlacklist:
+      - group: ''
+        kind: ResourceQuota
+      - group: ''
+        kind: LimitRange
+      - group: ''
+        kind: NetworkPolicy
+        orphanedResources: {}
+        roles: []
+      namespaceResourceWhitelist: []
+      orphanedResources: {}
+      roles: []
+      syncWindows:
+      - kind: allow
+        schedule: '* * * * *'
+        duration: 1h
+        applications:
+        - '*'
+        manualSync: false
+    
+    # ####### Cluster Core ############
+    - name: cluster-core
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+      description: Cluster Core Services
+      sourceRepos:
+      - 'https://github.com/flickers/gitops.git'
+      destinations:
+      - name: '*'
+        namespace: '*'
+        server: 'https://kubernetes.default.svc'
+      clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+      namespaceResourceBlacklist: []
+      namespaceResourceWhitelist: []
+      orphanedResources: {}
+      roles: []
+      syncWindows:
+      - kind: allow
+        schedule: '* * * * *'
+        duration: 1h
+        applications:
+        - '*'
+        manualSync: false
+  
+  config:
+    clusterCredentials:
+    - name: dev
+      server: https://kubernetes.default.svc
+      labels: {}
+      annotations: {}
+      config:
+        tlsClientConfig:
+          insecure: false
+
+    repositories: 
+      repo-flickers-gitops:
+        url: https://github.com/flickers/gitops.git
+        name: github-flickers
+        type: git
