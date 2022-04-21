@@ -24,9 +24,6 @@ jobs:
     uses: bretfisher/super-linter-workflow/.github/workflows/super-linter.yaml@main
     
     # Optional settings examples
-    
-    # with:
-    
-      # devops-only: false
-      
+    with: 
+      devops-only: true
       # filter-regex-exclude: html/.*
