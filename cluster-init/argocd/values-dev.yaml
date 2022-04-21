@@ -65,7 +65,7 @@ argo-cd:
         - '*'
         manualSync: false
   
-  config:
+  configs:
     clusterCredentials:
     - name: dev
       server: https://kubernetes.default.svc
