@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hallo-world
+  labels:
+    app: hallo-world
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hallo-world
+  template:
+    metadata:
+      labels:
+        app: hallo-world
+    spec:
+      containers:
+      - name: hallo-world
+        image: {{ .Values.image }}:{{ .Values.tag }}
+        ports:
+        - containerPort: 80
