@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-core
+  name: cluster-init
 spec:
   generators:
     - git:
@@ -17,7 +17,7 @@ spec:
       annotations:
         argocd.argoproj.io/manifest-generate-paths: '/{{ folderPath }}'
     spec:
-      project: cluster-core
+      project: cluster-init
       source:
         path: '{{ folderPath }}'
         targetRevision: HEAD
