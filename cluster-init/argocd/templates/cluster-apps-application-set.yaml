@@ -24,7 +24,6 @@ spec:
         repoURL: https://github.com/flickers/gitops.git
         helm:
           valueFiles:
-            - values.yaml
             - '{{ "{{" }} valueFile {{ "}}" }}'
       destination:
         namespace: '{{ "{{" }} namespace {{ "}}" }}'
