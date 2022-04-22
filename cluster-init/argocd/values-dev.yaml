@@ -64,6 +64,34 @@ argo-cd:
         applications:
         - '*'
         manualSync: false
+    
+    - name: cluster-init
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+      description: Cluster initialization Services
+      sourceRepos:
+      - 'https://github.com/flickers/gitops.git'
+      destinations:
+      - name: '*'
+        namespace: '*'
+        server: 'https://kubernetes.default.svc'
+      clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+      namespaceResourceBlacklist: []
+      namespaceResourceWhitelist: []
+      orphanedResources: {}
+      roles: []
+      syncWindows:
+      - kind: allow
+        schedule: '* * * * *'
+        duration: 1h
+        applications:
+        - '*'
+        manualSync: false
   
   configs:
     clusterCredentials:
