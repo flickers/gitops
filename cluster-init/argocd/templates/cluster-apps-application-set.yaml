@@ -13,22 +13,22 @@ spec:
     preserveResourcesOnDeletion: true
   template:
     metadata:
-      name: '{{ name }}'
+      name: '{{ "{{" }} name {{ "}}" }}'
       annotations:
-        argocd.argoproj.io/manifest-generate-paths: '/{{ folderPath }}'
+        argocd.argoproj.io/manifest-generate-paths: '/{{ "{{" }} folderPath {{ "}}" }}'
     spec:
       project: cluster-apps
       source:
-        path: '{{ folderPath }}'
+        path: '{{ "{{" }} folderPath {{ "}}" }}'
         targetRevision: HEAD
         repoURL: https://github.com/flickers/gitops.git
         helm:
           valueFiles:
             - values.yaml
-            - '{{ valueFile }}'
+            - '{{ "{{" }} valueFile {{ "}}" }}'
       destination:
-        namespace: '{{ namespace }}'
-        name: '{{ cluster }}'
+        namespace: '{{ "{{" }} namespace {{ "}}" }}'
+        name: '{{ "{{" }} cluster {{ "}}" }}'
       syncPolicy:
         automated:
           prune: true
