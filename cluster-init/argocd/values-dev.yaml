@@ -71,7 +71,7 @@ argo-cd:
       additionalAnnotations: {}
       finalizers:
       - resources-finalizer.argocd.argoproj.io
-      description: Cluster initialization Services
+      description: Cluster Initialization Services
       sourceRepos:
       - 'https://github.com/flickers/gitops.git'
       destinations:

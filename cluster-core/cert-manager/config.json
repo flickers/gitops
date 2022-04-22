@@ -1,6 +1,6 @@
 [
     {
-      "name": "cert-manager-dev",
+      "name": "cert-manager",
       "cluster": "dev",
       "namespace": "utility",
       "folderPath": "cluster-core/cert-manager",
