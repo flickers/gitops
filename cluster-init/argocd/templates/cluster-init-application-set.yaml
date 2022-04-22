@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-core
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/flickers/gitops.git
+        revision: HEAD
+        files:
+          - path: "cluster-init/**/config.json"
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  template:
+    metadata:
+      name: '{{ name }}'
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: '/{{ folderPath }}'
+    spec:
+      project: cluster-core
+      source:
+        path: '{{ folderPath }}'
+        targetRevision: HEAD
+        repoURL: https://github.com/flickers/gitops.git
+        helm:
+          valueFiles:
+            - values.yaml
+            - '{{ valueFile }}'
+      destination:
+        namespace: '{{ namespace }}'
+        name: '{{ cluster }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal : true
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - CreateNamespace=true

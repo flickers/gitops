@@ -1,0 +1,24 @@
+[
+    {
+      "name": "argocd",
+      "cluster": "dev",
+      "namespace": "argocd",
+      "folderPath": "cluster-init/argocd",
+      "valueFile": "values-dev.yaml"
+    },
+    {
+      "name": "argocd",
+      "cluster": "stage",
+      "namespace": "argocd",
+      "folderPath": "cluster-init/argocd",
+      "valueFile": "values-stage.yaml"
+    },
+    {
+      "name": "argocd",
+      "cluster": "prod",
+      "namespace": "argocd",
+      "folderPath": "cluster-init/argocd",
+      "valueFile": "values-prod.yaml"
+    }
+  ]
+  
