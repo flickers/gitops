@@ -14,13 +14,9 @@
   "ignorePaths": [".archived/**"],
   "fetchReleaseNotes": true,
   "labels": ["renovate"],
+  "helm-values": {"matchFiles": ["values-dev.yaml","values-stage.yaml","values-prod.yaml"]}
   "packageRules": [
     // Setup datasources
-    {
-      "helm-values": {
-        "matchFiles": ["values-dev.yaml","values-stage.yaml","values-prod.yaml"]
-      }
-    },
     {
       "matchDatasources": ["helm"],
       "commitMessageTopic": "Helm chart {{depName}}",
