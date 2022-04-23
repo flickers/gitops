@@ -1,0 +1,10 @@
+[
+    {
+      "name": "argocd-image-updater",
+      "cluster": "dev",
+      "namespace": "argocd",
+      "folderPath": "cluster-core/argocd-image-updater",
+      "valueFile": "values-dev.yaml"
+    }
+  ]
+  
