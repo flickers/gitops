@@ -10,11 +10,11 @@ on:
 
 jobs:
   chart-releaser:
-    - name: Run chart-releaser
-      uses: helm/chart-releaser-action@v1.4.0
-      with:
-        charts_dir: charts
-        config: cr.yaml
-        charts_repo_url: https://github.com/flickers/gitops.git
-      env:
-        CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    name: Run chart-releaser
+    uses: helm/chart-releaser-action@v1.4.0
+    with:
+      charts_dir: charts
+      config: cr.yaml
+      charts_repo_url: https://github.com/flickers/gitops.git
+    env:
+      CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
