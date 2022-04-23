@@ -14,7 +14,7 @@
   "ignorePaths": [".archived/**"],
   "fetchReleaseNotes": true,
   "labels": ["renovate"],
-  "helm-values": {"fileMatch": ["\\.yaml$"],
+  "helm-values": {"fileMatch": ["(^|/)values*.yaml$"],
   }
 ,
   "packageRules": [
