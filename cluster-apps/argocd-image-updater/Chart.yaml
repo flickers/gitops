@@ -1,0 +1,7 @@
+name: argocd-image-updater
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: argocd-image-updater
+    version: 0.7.0
+    repository: https://argoproj.github.io/argo-helm
