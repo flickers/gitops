@@ -1,4 +1,4 @@
 main:
   image: 
     repository: gummikr/hallo-world
-    tag: sha-262e683
+    tag: v1.0.0
