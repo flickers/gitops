@@ -14,7 +14,9 @@
   "ignorePaths": [".archived/**"],
   "fetchReleaseNotes": true,
   "labels": ["renovate"],
-  "helm-values": {"matchFiles": ["values-dev.yaml","values-stage.yaml","values-prod.yaml"]},
+  "helm-values": {"fileMatch": ["\\.yaml$"],
+  }
+,
   "packageRules": [
     // Setup datasources
     {
