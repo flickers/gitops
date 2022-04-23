@@ -17,6 +17,10 @@
   "packageRules": [
     // Setup datasources
     {
+      "matchDatasources": ["helm-values"],
+       "matchFiles": ["values.yaml","values-dev.yaml","values-stage.yaml","values-prod.yaml"]
+    },
+    {
       "matchDatasources": ["helm"],
       "commitMessageTopic": "Helm chart {{depName}}",
       "separateMinorPatch": true
