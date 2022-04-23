@@ -1,0 +1,7 @@
+name: hallo-world
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: main
+    version: 1.0.0
+    repository: https://flickers.github.io/gitops/

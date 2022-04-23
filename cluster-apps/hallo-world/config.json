@@ -1,0 +1,10 @@
+[
+    {
+      "name": "hallo-world",
+      "cluster": "dev",
+      "namespace": "halloworld",
+      "folderPath": "cluster-apps/hallo-world",
+      "valueFile": "values-dev.yaml"
+    }
+  ]
+  
