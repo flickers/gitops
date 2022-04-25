@@ -4,4 +4,4 @@ version: 1.0.0
 dependencies:
   - name: main
     version: 1.0.1
-    repository: file://../charts/main
+    repository: file://../../charts/main
