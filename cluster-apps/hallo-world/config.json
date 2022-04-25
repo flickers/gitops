@@ -4,6 +4,7 @@
       "cluster": "dev",
       "namespace": "halloworld",
       "folderPath": "cluster-apps/hallo-world",
+      "image": "gummikr/hallo-world",
       "valueFile": "values-dev.yaml"
     }
   ]
