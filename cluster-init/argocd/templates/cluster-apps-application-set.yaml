@@ -18,9 +18,9 @@ spec:
       name: '{{ "{{" }} name {{ "}}" }}'
       annotations:
         argocd.argoproj.io/manifest-generate-paths: '/{{ "{{" }} folderPath {{ "}}" }}'
-        argocd-image-updater.argoproj.io/image-list: {{ "{{" }} name {{ "}}" }}={{ "{{" }} image {{ "}}" }}
-        argocd-image-updater.argoproj.io/{{ "{{" }} name {{ "}}" }}.update-strategy: latest
-        argocd-image-updater.argoproj.io/{{ "{{" }} name {{ "}}" }}.allow-tags: regexp:^sha-[0-9a-f]{7}$
+        argocd-image-updater.argoproj.io/image-list: '{{ "{{" }} name {{ "}}" }}={{ "{{" }} image {{ "}}" }}'
+        argocd-image-updater.argoproj.io/{{ "{{" }} name {{ "}}" }}.update-strategy: 'latest'
+        argocd-image-updater.argoproj.io/{{ "{{" }} name {{ "}}" }}.allow-tags: 'regexp:^sha-[0-9a-f]{7}$'
     spec:
       project: cluster-apps
       source:
