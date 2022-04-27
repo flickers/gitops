@@ -7,22 +7,22 @@ metadata:
 spec:
   generators:
     - matrix:
-      generators:
-        - git:
-            repoURL: https://github.com/flickers/gitops.git
-            revision: HEAD
-            files:
-              - path: "cluster-apps/**/config.json"
-        - pullRequest:
-            github:
-              # The GitHub organization or user.
-              owner: flickers
-              # The Github repository
-              repo: 'hallo-world'
-              # For GitHub Enterprise (optional)
-              # Labels is used to filter the PRs that you want to target. (optional)
-              labels:
-              - preview
+        generators:
+          - git:
+              repoURL: https://github.com/flickers/gitops.git
+              revision: HEAD
+              files:
+                - path: "cluster-apps/**/config.json"
+          - pullRequest:
+              github:
+                # The GitHub organization or user.
+                owner: flickers
+                # The Github repository
+                repo: 'hallo-world'
+                # For GitHub Enterprise (optional)
+                # Labels is used to filter the PRs that you want to target. (optional)
+                labels:
+                - preview
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
