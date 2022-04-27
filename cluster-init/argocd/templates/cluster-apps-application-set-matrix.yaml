@@ -18,7 +18,7 @@ spec:
                 # The GitHub organization or user.
                 owner: flickers
                 # The Github repository
-                repo: 'hallo-world'
+                repo: hallo-world
                 # For GitHub Enterprise (optional)
                 # Labels is used to filter the PRs that you want to target. (optional)
                 labels:
