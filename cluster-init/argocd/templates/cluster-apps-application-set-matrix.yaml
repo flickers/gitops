@@ -31,8 +31,8 @@ spec:
       annotations:
         argocd.argoproj.io/manifest-generate-paths: '/{{ "{{" }} folderPath {{ "}}" }}'
         argocd-image-updater.argoproj.io/image-list: '{{ "{{" }} name {{ "}}" }}={{ "{{" }} image {{ "}}" }}'
-        argocd-image-updater.argoproj.io/{{ "{{" }} name {{ "}}" }}.update-strategy: 'latest'
         argocd-image-updater.argoproj.io/{{ "{{" }} name {{ "}}" }}.allow-tags: 'regexp:^sha-[0-9a-f]{7}$'
+        argocd-image-updater.argoproj.io/{{ "{{" }} name {{ "}}" }}.update-strategy: latest
         argocd-image-updater.argoproj.io/{{ "{{" }} name {{ "}}" }}.helm.image-name: main.image.repository
         argocd-image-updater.argoproj.io/{{ "{{" }} name {{ "}}" }}.helm.image-tag: main.image.tag
         argocd-image-updater.argoproj.io/git-branch: master
