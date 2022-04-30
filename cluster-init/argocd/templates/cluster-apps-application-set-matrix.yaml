@@ -24,7 +24,7 @@ spec:
     preserveResourcesOnDeletion: true
   template:
     metadata:
-      name: '{{ "{{" }} name {{ "}}" }}-{{ "{{" }} branch {{ "}}" }}-{{ "{{" }} number {{ "}}" }}'
+      name: '{{ "{{" }} name {{ "}}" }}-{{ "{{" }} number {{ "}}" }}-{{ "{{" }} cluster {{ "}}" }}'
       annotations:
         argocd.argoproj.io/manifest-generate-paths: '/{{ "{{" }} folderPath {{ "}}" }}'
         argocd-image-updater.argoproj.io/image-list: '{{ "{{" }} name {{ "}}" }}={{ "{{" }} image {{ "}}" }}'
@@ -35,6 +35,7 @@ spec:
         argocd-image-updater.argoproj.io/git-branch: master
         argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
         repo-head-sha: '{{ "{{" }} head_sha {{ "}}" }}'
+        wanted-name: '{{ "{{" }} name {{ "}}" }}-{{ "{{" }} branch {{ "}}" }}-{{ "{{" }} number {{ "}}" }}'
     spec:
       project: cluster-apps
       source:
