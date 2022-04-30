@@ -20,8 +20,6 @@ spec:
                 # The Github repository
                 repo: hallo-world
                 # For GitHub Enterprise (optional)
-                labels:
-                  - preview
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
