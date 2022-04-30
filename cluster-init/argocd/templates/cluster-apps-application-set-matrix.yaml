@@ -20,6 +20,8 @@ spec:
                 # The Github repository
                 repo: hallo-world
                 # For GitHub Enterprise (optional)
+                labels:
+                  - preview
               requeueAfterSeconds: 500
   syncPolicy:
     preserveResourcesOnDeletion: true
