@@ -20,9 +20,6 @@ spec:
                 # The Github repository
                 repo: hallo-world
                 # For GitHub Enterprise (optional)
-                # Labels is used to filter the PRs that you want to target. (optional)
-                labels:
-                - preview
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
