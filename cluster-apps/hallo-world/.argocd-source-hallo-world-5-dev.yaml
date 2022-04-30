@@ -1,8 +1,0 @@
-helm:
-  parameters:
-  - name: main.image.tag
-    value: sha-e283d7e
-    forcestring: true
-  - name: main.image.repository
-    value: gummikr/hallo-world
-    forcestring: true
