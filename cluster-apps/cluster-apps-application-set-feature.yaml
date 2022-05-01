@@ -33,6 +33,7 @@ spec:
         repo-head-sha: '{{ head_sha }}'
         wanted-name: '{{ name }}-{{ branch }}-{{ number }}'
         testing: '{{ name }}-{{ regexReplaceAll "\\W+" .branch "-" }}-{{ number }}'
+        testtwo: '{{- printf "%s-%s" .branch | replace "+" "_" | trunc 63 | trimSuffix "-" }}'
     spec:
       project: cluster-apps-feature
       source:
