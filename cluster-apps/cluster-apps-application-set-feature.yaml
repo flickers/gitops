@@ -27,26 +27,26 @@ spec:
     preserveResourcesOnDeletion: true
   template:
     metadata:
-      name: '{{ "{{" }} name {{ "}}" }}-pull-{{ "{{" }} number {{ "}}" }}-{{ "{{" }} cluster {{ "}}" }}'
+      name: '{{ name }}-pull-{{ number }}-{{ cluster }}'
       annotations:
-        argocd.argoproj.io/manifest-generate-paths: '/{{ "{{" }} folderPath {{ "}}" }}'
-        repo-head-sha: '{{ "{{" }} head_sha {{ "}}" }}'
-        wanted-name: '{{ "{{" }} name {{ "}}" }}-{{ "{{" }} branch {{ "}}" }}-{{ "{{" }} number {{ "}}" }}'
+        argocd.argoproj.io/manifest-generate-paths: '/{{ folderPath }}'
+        repo-head-sha: '{{ head_sha }}'
+        wanted-name: '{{ name }}-{{ branch }}-{{ number }}'
     spec:
       project: cluster-apps-feature
       source:
-        path: '{{ "{{" }} folderPath {{ "}}" }}'
+        path: '{{ folderPath }}'
         targetRevision: HEAD
         repoURL: https://github.com/flickers/gitops.git
         helm:
           parameters:
           - name: 'main.image.tag'
-            value: '{{ "{{" }} head_sha {{ "}}" }}'
+            value: '{{ head_sha }}'
           valueFiles:
-            - '{{ "{{" }} valueFile {{ "}}" }}'
+            - '{{ valueFile }}'
       destination:
-        namespace: '{{ "{{" }} namespace {{ "}}" }}'
-        name: '{{ "{{" }} cluster {{ "}}" }}'
+        namespace: '{{ namespace }}'
+        name: '{{ cluster }}'
       syncPolicy:
         automated:
           prune: true
