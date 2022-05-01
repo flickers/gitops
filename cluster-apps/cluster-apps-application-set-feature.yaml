@@ -32,6 +32,7 @@ spec:
         argocd.argoproj.io/manifest-generate-paths: '/{{ folderPath }}'
         repo-head-sha: '{{ head_sha }}'
         wanted-name: '{{ name }}-{{ branch }}-{{ number }}'
+        testing: '{{ name }}-{{ regexReplaceAll "\\W+" branch "-" }}-{{ number }}'
     spec:
       project: cluster-apps-feature
       source:
