@@ -63,4 +63,4 @@ spec:
       - group: "*"
         kind: Deployment
         jsonPointers:
-        - /metadata/annotations
+        - /metadata/labels/argocd.argoproj.io/instance
