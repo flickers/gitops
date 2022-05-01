@@ -36,6 +36,41 @@ argo-cd:
         - '*'
         manualSync: false
     
+    # ####### Cluster Apps Feature Branches ############
+    - name: cluster-apps-feature
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+      description: Cluster Apps Feature Branches
+      sourceRepos:
+      - 'https://github.com/flickers/gitops.git'
+      destinations:
+      - name: '*'
+        namespace: '*'
+        server: 'https://kubernetes.default.svc'
+      clusterResourceWhitelist:
+      - group: ''
+        kind: Namespace
+      namespaceResourceBlacklist:
+      - group: ''
+        kind: ResourceQuota
+      - group: ''
+        kind: LimitRange
+      - group: ''
+        kind: NetworkPolicy
+      namespaceResourceWhitelist: []
+      orphanedResources: {}
+      roles: []
+      syncWindows:
+      - kind: allow
+        schedule: '* * * * *'
+        duration: 1h
+        applications:
+        - '*'
+        manualSync: false
+    
     # ####### Cluster Core ############
     - name: cluster-core
       namespace: argocd

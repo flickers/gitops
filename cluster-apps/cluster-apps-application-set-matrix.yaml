@@ -27,13 +27,13 @@ spec:
     preserveResourcesOnDeletion: true
   template:
     metadata:
-      name: '{{ "{{" }} name {{ "}}" }}-{{ "{{" }} number {{ "}}" }}-{{ "{{" }} cluster {{ "}}" }}'
+      name: '{{ "{{" }} name {{ "}}" }}-pull-{{ "{{" }} number {{ "}}" }}-{{ "{{" }} cluster {{ "}}" }}'
       annotations:
         argocd.argoproj.io/manifest-generate-paths: '/{{ "{{" }} folderPath {{ "}}" }}'
         repo-head-sha: '{{ "{{" }} head_sha {{ "}}" }}'
         wanted-name: '{{ "{{" }} name {{ "}}" }}-{{ "{{" }} branch {{ "}}" }}-{{ "{{" }} number {{ "}}" }}'
     spec:
-      project: cluster-apps
+      project: cluster-apps-feature
       source:
         path: '{{ "{{" }} folderPath {{ "}}" }}'
         targetRevision: HEAD
@@ -54,3 +54,13 @@ spec:
         syncOptions:
           - ApplyOutOfSyncOnly=true
           - CreateNamespace=true
+      ignoreDifferences:
+      # for the specified json pointers
+      - group: "*"
+        kind: Deployment
+        jsonPointers:
+        - /spec/replicas
+      - group: "*"
+        kind: Deployment
+        jsonPointers:
+        - /metadata/annotations
