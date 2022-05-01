@@ -20,6 +20,9 @@ spec:
                 # The Github repository
                 repo: hallo-world
                 # For GitHub Enterprise (optional)
+                tokenRef:
+                  secretName: git-creds
+                  key: password
                 # labels:
                 #   - preview
               requeueAfterSeconds: 500
@@ -32,8 +35,6 @@ spec:
         argocd.argoproj.io/manifest-generate-paths: '/{{ folderPath }}'
         repo-head-sha: '{{ head_sha }}'
         wanted-name: '{{ name }}-{{ branch }}-{{ number }}'
-        testing: '{{ name }}-{{ regexReplaceAll "\\W+" .branch "-" }}-{{ number }}'
-        testtwo: '{{- printf "%s-%s" .branch | replace "+" "_" | trunc 63 | trimSuffix "-" }}'
     spec:
       project: cluster-apps-feature
       source:
