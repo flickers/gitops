@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hallo-world
+  name: {{ include "main.fullname" . }}
   labels:
     app: hallo-world
 spec:
