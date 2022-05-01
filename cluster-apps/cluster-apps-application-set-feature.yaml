@@ -20,8 +20,8 @@ spec:
                 # The Github repository
                 repo: hallo-world
                 # For GitHub Enterprise (optional)
-                labels:
-                  - preview
+                # labels:
+                #   - preview
               requeueAfterSeconds: 500
   syncPolicy:
     preserveResourcesOnDeletion: true
@@ -63,4 +63,4 @@ spec:
       - group: "*"
         kind: Deployment
         jsonPointers:
-        - /metadata/labels/argocd.argoproj.io/instance
+        - /metadata/labels/argocd.argoproj.io~1instance
