@@ -49,10 +49,10 @@ spec:
         name: '{{ cluster }}'
       syncPolicy:
         automated:
-          prune: true
-          selfHeal: true
+          prune: false
+          selfHeal: false
         syncOptions:
-          - ApplyOutOfSyncOnly=true
+          - ApplyOutOfSyncOnly=false
           - CreateNamespace=true
       ignoreDifferences:
       # for the specified json pointers
