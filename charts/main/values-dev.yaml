@@ -1,2 +1,3 @@
-image: gummikr/hallo-world
-tag: sha-262e683
+image: 
+  repository: gummikr/hallo-world
+  tag: 1.0.1
