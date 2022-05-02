@@ -1,3 +1,16 @@
+env: dev
+
+nameOverride: ""
+fullnameOverride: ""
+
+isFeatureDeployment: false
+namespace: default
 image: 
   repository: gummikr/hallo-world
   tag: 1.0.1
+git:
+  owner: flickers
+  repo: hallo-world
+  token:
+    secretName: git-creds
+    secretKey: password
