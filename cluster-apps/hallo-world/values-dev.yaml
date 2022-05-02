@@ -4,7 +4,6 @@ main:
   nameOverride: ""
   fullnameOverride: ""
 
-  isFeatureDeployment: false
   namespace: halloworld
   image: 
     repository: gummikr/hallo-world
