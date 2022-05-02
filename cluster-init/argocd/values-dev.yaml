@@ -47,7 +47,7 @@ argo-cd:
       sourceRepos:
       - 'https://github.com/flickers/gitops.git'
       destinations:
-      - name: '*'
+      - name: 'dev'
         namespace: '*'
         server: 'https://kubernetes.default.svc'
       clusterResourceWhitelist:
