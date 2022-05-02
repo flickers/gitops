@@ -1,5 +1,6 @@
-{{- if not .Values.isFeatureDeployment }}
+{{- if .Values.isFeatureDeployment }}
 apiVersion: argoproj.io/v1alpha1
+# isFeatureDeployment {{.Values.isFeatureDeployment }}
 kind: ApplicationSet
 metadata:
   name: '{{ include "main.fullname" . }}-feature-applicationset'
