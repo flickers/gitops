@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: {{ include "main.fullname" . }}
   labels:
-    app: {{ include "main.fullname" . }}
+    app: "{{ include "main.fullname" . }}"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ include "main.fullname" . }}
+      app: "{{ include "main.fullname" . }}"
   template:
     metadata:
       labels:
-        app: {{ include "main.fullname" . }}
+        app: "{{ include "main.fullname" . }}"
     spec:
       containers:
       - name: main
