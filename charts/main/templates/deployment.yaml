@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   name: {{ include "main.fullname" . }}
   labels:
-    app: hallo-world
+    app: {{ include "main.fullname" . }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hallo-world
+      app: {{ include "main.fullname" . }}
   template:
     metadata:
       labels:
-        app: hallo-world
+        app: {{ include "main.fullname" . }}
     spec:
       containers:
-      - name: hallo-world
+      - name: main
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         ports:
         - containerPort: 80

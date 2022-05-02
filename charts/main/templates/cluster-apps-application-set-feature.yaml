@@ -1,0 +1,65 @@
+{{- if .Values.isFeatureDeployment }}
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: '{{ include "main.fullname" . }}-feature-applicationset'
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  generators:
+    - pullRequest:
+        github:
+          # The GitHub organization or user.
+          owner: {{ .Values.git.owner }}
+          # The Github repository
+          repo: {{ .Values.git.repo }}
+          # For GitHub Enterprise (optional)
+          tokenRef:
+            secretName: {{ .Values.git.token.secretName }}
+            key: {{ .Values.git.token.secretKey }}
+          # labels:
+          #   - preview
+        requeueAfterSeconds: 500
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  template:
+    metadata:
+      name: '{{ include "main.fullname" . }}-pull-{{ "{{" }} number {{ "}}" }}-{{ .Values.env }}'
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: '/cluster-apps/{{ .Chart.Name }}'
+        repo-head-sha: '{{ head_sha }}'
+        name-branch-number: '{{ name }}-{{ branch }}-{{ number }}'
+    spec:
+      project: cluster-apps-feature
+      source:
+        targetRevision: HEAD
+        repoURL: https://github.com/flickers/gitops.git
+        helm:
+          parameters:
+          - name: 'main.image.tag'
+            value: 'pr-{{ "{{" }} number {{ "}}" }}'
+          - name: 'main.isFeatureDeployment'
+            value: true
+          valueFiles:
+            - 'values-{{ .Values.env }}.yaml'
+      destination:
+        namespace: '{{ .Values.namespace }}'
+        name: '{{ .Values.env }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - CreateNamespace=true
+      ignoreDifferences:
+      # for the specified json pointers
+      - group: "*"
+        kind: Deployment
+        jsonPointers:
+        - /spec/replicas
+      # - group: "*"
+      #   kind: Deployment
+      #   jsonPointers:
+      #   - /metadata/labels/argocd.argoproj.io~1instance
+{{- end }}
