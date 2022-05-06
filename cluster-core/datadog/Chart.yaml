@@ -3,5 +3,5 @@ apiVersion: v2
 version: 1.0.0
 dependencies:
   - name: datadog
-    version: 2.33.0
+    version: 2.33.4
     repository: https://helm.datadoghq.com
