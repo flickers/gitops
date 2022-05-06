@@ -25,11 +25,11 @@ spec:
     preserveResourcesOnDeletion: true
   template:
     metadata:
-      name: '{{ include "main.fullname" . }}-pull-{{ "{{" }} number {{ "}}" }}-{{ .Values.env }}'
+      name: '{{ .Release.Name }}-pull-{{ "{{" }} number {{ "}}" }}-{{ .Values.env }}'
       annotations:
-        argocd.argoproj.io/manifest-generate-paths: '/cluster-apps/{{ .Chart.Name }}'
+        argocd.argoproj.io/manifest-generate-paths: '/cluster-apps/{{ .Release.Name }}'
         repo-head-sha: '{{ "{{" }} head_sha {{ "}}" }}'
-        name-branch-number: '{{ include "main.fullname" . }}-{{ "{{" }} branch {{ "}}" }}-{{ "{{" }} number {{ "}}" }}'
+        name-branch-number: '{{ .Release.Name }}-{{ "{{" }} branch {{ "}}" }}-{{ "{{" }} number {{ "}}" }}'
     spec:
       project: cluster-apps-feature
       source:
@@ -40,7 +40,7 @@ spec:
           - name: 'main.image.tag'
             value: 'pr-{{ "{{" }} number {{ "}}" }}'
           - name: 'main.isFeatureDeployment'
-            value: true
+            value: 'true'
           valueFiles:
             - 'values-{{ .Values.env }}.yaml'
       destination:

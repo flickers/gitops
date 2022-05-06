@@ -3,5 +3,5 @@ apiVersion: v2
 version: 1.0.0
 dependencies:
   - name: main
-    version: 1.0.9
+    version: 1.0.10
     repository: https://flickers.github.io/gitops/
