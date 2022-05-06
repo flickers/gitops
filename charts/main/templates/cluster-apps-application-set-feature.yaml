@@ -4,6 +4,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: '{{ include "main.fullname" . }}-feature-applicationset'
+  namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
