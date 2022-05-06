@@ -36,6 +36,7 @@ spec:
       source:
         targetRevision: HEAD
         repoURL: https://github.com/flickers/gitops.git
+        path: '/cluster-apps/{{ .Release.Name }}'
         helm:
           parameters:
           - name: 'main.image.tag'
