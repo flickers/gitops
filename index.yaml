@@ -2,6 +2,13 @@ apiVersion: v1
 entries:
   main:
   - apiVersion: v2
+    created: "2022-05-06T22:09:29.139909522Z"
+    digest: a105ddf3055681ab6f7ce71a93da0b25837e81c254ee7800cbf89c2b438b8804
+    name: main
+    urls:
+    - https://github.com/flickers/gitops/releases/download/main-1.0.14/main-1.0.14.tgz
+    version: 1.0.14
+  - apiVersion: v2
     created: "2022-05-06T22:03:57.189518346Z"
     digest: 50aca8ab2a278aa9250abad2e87403d2525e33c1a3029855ca49cbac2828d7a6
     name: main
@@ -92,4 +99,4 @@ entries:
     urls:
     - https://github.com/flickers/gitops/releases/download/main-1.0.0/main-1.0.0.tgz
     version: 1.0.0
-generated: "2022-05-06T22:03:57.189617946Z"
+generated: "2022-05-06T22:09:29.140130123Z"
