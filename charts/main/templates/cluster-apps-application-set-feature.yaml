@@ -5,8 +5,8 @@ kind: ApplicationSet
 metadata:
   name: '{{ include "main.fullname" . }}-feature-applicationset'
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  # finalizers:
+  #  - resources-finalizer.argocd.argoproj.io
 spec:
   generators:
     - pullRequest:
@@ -16,9 +16,9 @@ spec:
           # The Github repository
           repo: {{ .Values.git.repo }}
           # For GitHub Enterprise (optional)
-          tokenRef:
-            secretName: {{ .Values.git.token.secretName }}
-            key: {{ .Values.git.token.secretKey }}
+          # tokenRef:
+          #   secretName: {{ .Values.git.token.secretName }}
+          #   key: {{ .Values.git.token.secretKey }}
           # labels:
           #   - preview
         requeueAfterSeconds: 500
