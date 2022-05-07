@@ -1,4 +1,4 @@
-{{- if and (eq .Values.isFeatureDeployment false) (eq .Values.env "dev") }}
+{{- if and (not .Values.isFeatureDeployment) (eq .Values.env "dev") }}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
