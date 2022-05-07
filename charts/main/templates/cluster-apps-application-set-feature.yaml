@@ -27,6 +27,8 @@ spec:
   template:
     metadata:
       name: '{{ .Release.Name }}-pull-{{ "{{" }} number {{ "}}" }}-{{ .Values.env }}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
       annotations:
         argocd.argoproj.io/manifest-generate-paths: '/cluster-apps/{{ .Release.Name }}'
         repo-head-sha: '{{ "{{" }} head_sha {{ "}}" }}'
