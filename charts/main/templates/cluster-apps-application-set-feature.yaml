@@ -1,6 +1,5 @@
-{{- if not .Values.isFeatureDeployment }}
+{{- if and (eq .Values.isFeatureDeployment false) (eq .Values.env "dev") }}
 apiVersion: argoproj.io/v1alpha1
-# isFeatureDeployment {{.Values.isFeatureDeployment }}
 kind: ApplicationSet
 metadata:
   name: '{{ include "main.fullname" . }}-feature-applicationset'
@@ -16,9 +15,9 @@ spec:
           # The Github repository
           repo: {{ .Values.git.repo }}
           # For GitHub Enterprise (optional)
-          # tokenRef:
-          #   secretName: {{ .Values.git.token.secretName }}
-          #   key: {{ .Values.git.token.secretKey }}
+          tokenRef:
+            secretName: {{ .Values.git.token.secretName }}
+            key: {{ .Values.git.token.secretKey }}
           # labels:
           #   - preview
         requeueAfterSeconds: 500
