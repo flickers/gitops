@@ -1,4 +1,5 @@
 {{ if and (not .Values.isFeatureDeployment) (eq .Values.env "dev") }}
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -40,10 +41,10 @@ spec:
         path: 'cluster-apps/{{ .Release.Name }}'
         helm:
           parameters:
-          - name: 'main.image.tag'
-            value: 'pr-{{ "{{" }} number {{ "}}" }}'
-          - name: 'main.isFeatureDeployment'
-            value: 'true'
+            - name: 'main.image.tag'
+              value: 'pr-{{ "{{" }} number {{ "}}" }}'
+            - name: 'main.isFeatureDeployment'
+              value: 'true'
           valueFiles:
             - 'values-{{ .Values.env }}.yaml'
       destination:
@@ -57,13 +58,13 @@ spec:
           - ApplyOutOfSyncOnly=true
           - CreateNamespace=true
       ignoreDifferences:
-      # for the specified json pointers
-      - group: "*"
-        kind: Deployment
-        jsonPointers:
-        - /spec/replicas
-      # - group: "*"
-      #   kind: Deployment
-      #   jsonPointers:
-      #   - /metadata/labels/argocd.argoproj.io~1instance
-{{- end }}
+        # for the specified json pointers
+        - group: "*"
+          kind: Deployment
+          jsonPointers:
+            - /spec/replicas
+        # - group: "*"
+        #   kind: Deployment
+        #   jsonPointers:
+        #   - /metadata/labels/argocd.argoproj.io~1instance
+{{ end }}
