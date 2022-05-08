@@ -42,7 +42,7 @@ spec:
         helm:
           parameters:
             - name: 'main.image.tag'
-              value: 'sha-{{ "{{" }} head_sha {{ "}}" }}'
+              value: 'pr-{{ "{{" }} head_sha {{ "}}" }}'
             - name: 'main.isFeatureDeployment'
               value: 'true'
           valueFiles:
