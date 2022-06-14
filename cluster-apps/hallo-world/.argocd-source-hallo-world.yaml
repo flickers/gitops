@@ -4,5 +4,5 @@ helm:
     value: gummikr/hallo-world
     forcestring: true
   - name: main.image.tag
-    value: sha-b2e5e6e
+    value: sha-de2be94
     forcestring: true
